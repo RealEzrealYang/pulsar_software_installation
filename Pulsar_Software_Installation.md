@@ -125,11 +125,12 @@ XWDRIV 2 /XSERVE
 
 ##### 3.修改 ../pgplot/drivers/pndriv.c
 将第225行左右的  
-if (setjmp(png_ptr->jmpbuf)) {
+if (setjmp(png_ptr->jmpbuf)) {  
 改为  
 if (setjmp(png_jmpbuf(png_ptr))) {  
 ##### 4.安装
 ```bash
+cd $ASTROSOFT/pgplot_build
 make
 make clean
 make cpg
