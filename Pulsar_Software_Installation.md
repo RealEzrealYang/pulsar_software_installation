@@ -53,7 +53,7 @@ export LD_LIBRARY_PATH=/usr/lib:/usr/lib/x86_64-linux-gnu:$PGPLOT_DIR:$ASTROSOFT
 # all other executables are found in $ASTROSOFT/bin
 export PATH=$PATH:$ASTROSOFT/bin:$PGPLOT_DIR
 
-export LIBRARY_PATH=$ASTROSOFT/TempoNest/PolyChord/src:$LIBRARY_PATH
+export LIBRARY_PATH=$ASTROSOFT/TempoNest/PolyChord/src${LIBRARY_PATH:+:$LIBRARY_PATH}
 
 # Pkgconfig
 export PKG_CONFIG_PATH=$ASTROSOFT/lib/pkgconfig:$PKG_CONFIG_PATH:$ASTROSOFT/psrchive/Management:$ASTROSOFT/lib/pkgconfig
