@@ -105,7 +105,7 @@ cd $ASTROSOFT
 wget ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz
 tar zvxf pgplot5.2.tar.gz
 cd pgplot_build
-../pgplot/makemake ../pgplot linux g77_gcc
+../pgplot/makemake ../pgplot linux g77_gcc #执行第一次
 ```
 ##### 1.打开drivers.list,将下面内容所在行前的！去掉  
 PNDRIV 1 /PNG  
@@ -118,11 +118,17 @@ XWDRIV 1 /XWINDOW
 XWDRIV 2 /XSERVE  
 ```bash
 ../pgplot/makemake ../pgplot linux g77_gcc #再执行一次
-cd pgplot
 ```
-##### 2.修改 Makefile
+##### 2.修改 pgplot_build/makefile
 第25行改为 FCOMPL=gfortran  
 第880行改为 pndriv.o : /usr/include/png.h /usr/include/pngconf.h /usr/include/zlib.h /usr/include/zconf.h
+
+##### 3.修改 ../pgplot/drivers/pndriv.c
+将第225行左右的  
+if (setjmp(png_ptr->jmpbuf)) {
+改为  
+if (setjmp(png_jmpbuf(png_ptr))) {  
+##### 4.安装
 ```bash
 make
 make clean
