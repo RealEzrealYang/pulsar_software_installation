@@ -1,7 +1,7 @@
 <h1 align="center">脉冲星计时软件安装指南</h1>
 
 >**作者**：Ezreal  
->**更新时间**：2026.9.10
+>**更新时间**：2026.11.17
 
 
 此文档针对于**x86_64**架构CPU, **Ubuntu 24.04**系统安装常用的脉冲星计时软件(Psrcat,Tempo,Tempo2,Psrchive,Dspsr,TempoNest),终端执行`uname -m`可以查看CPU架构.另外要求能够科学上网来下载**境外源码**.  
