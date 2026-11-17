@@ -17,7 +17,7 @@ https://pan.baidu.com/s/1e7qt0MRBTyLUFgsqkvhziw?pwd=3eBd
 sudo apt update
 sudo apt install curl
 curl -fsSL https://get.docker.com -o get-docker.sh  
-sudo sh get-docker.sh
+sudo sh get-docker.sh #sudo DOWNLOAD_URL=https://mirrors.ustc.edu.cn/docker-ce sh get-docker.sh
 ```
 **以下三步用于拉取线上镜像和验证安装,如果安装Docker没有报错且通过云盘下载好了镜像就可以省略**
 ##### 2.配置镜像下载地址
@@ -64,13 +64,13 @@ sudo docker images
 ```bash
 xhost +local:root
 ```
-下面正式创建容器.`-it`使用终端与容器中系统交互,`--net=host`让容器中系统共享宿主机的ip,端口和网卡,`--name`给容器命名,`-e DISPLAY=$DISPLAY -e PGPLOT_DEV=/xs -v /tmp/.X11-unix:/tmp/.X11-unix`用于调用宿主机的画图功能,`-v $DATA:/data -v /mnt/my_image:/mnt:rshared`设置了2个挂载点,在宿主机`$DATA`路径下的文件会自动被容器系统识别,但是临时挂载移动硬盘到容器中,必须在宿主机以/mnt/$MYIMAGE为挂载点挂载.**将`$NAME $DATA $MYIMAGE`替换为你想设置的名称或路径.**
+下面正式创建容器.`-it`使用终端与容器中系统交互,`--net=host`让容器中系统共享宿主机的ip,端口和网卡,`--name`给容器命名,`-e DISPLAY=$DISPLAY -e PGPLOT_DEV=/xs -v /tmp/.X11-unix:/tmp/.X11-unix`用于调用宿主机的画图功能,`-v $DATAPATH:/data -v $MNTPATH:/mnt:rshared`设置了2个挂载点,在宿主机`$DATAPATH`路径下的文件会自动被容器系统识别并放在设置的/data下,但是临时挂载移动硬盘到容器中,必须在宿主机以$MNTPATH为挂载点挂载,文件出现在设置的/mnt中.**将`$NAME $DATAPATH $MNTPATH`替换为你想设置的名称或路径.**
 ```bash
-sudo docker run -it --net=host --name $NAME -e DISPLAY=$DISPLAY -e PGPLOT_DEV=/xs -v /tmp/.X11-unix:/tmp/.X11-unix -v $DATA:/data -v /mnt/$MYIMAGE:/mnt:rshared $MYIMAGE bash
+sudo docker run -it --net=host --name $NAME -e DISPLAY=$DISPLAY -e PGPLOT_DEV=/xs -v /tmp/.X11-unix:/tmp/.X11-unix -v $DATAPATH:/data -v /MNTPATH:/mnt:rshared $MYIMAGE bash
 ```
 
 ### 四、Docker常用命令
-以下提供几个常用Docker命令.进入容器使用软件前需要先运行容器.
+以下提供几个常用Docker命令.进入容器使用软件前需要先运行容器.  
 运行容器``sudo docker start $NAME``  
 停运容器``sudo docker stop $NAME``  
 查看容器``sudo docker ps -a``  
