@@ -52,7 +52,7 @@ sudo docker run hello-world
 ##### 1.镜像加载至Docker
 首先需要将本地下载好的镜像加载到Docker的系统文件夹中,用于后续创建容器.`cd`到存放.tar格式镜像文件所在的路径下.执行
 ```bash
-sudo docker load i $MYIMAGE.tar
+sudo docker load -i $MYIMAGE.tar
 ```
 执行此命令,确认$MYIMAGE是否被加载
 ```bash
