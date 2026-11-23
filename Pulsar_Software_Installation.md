@@ -30,7 +30,7 @@ export ASTROSOFT=/home/{user}/psrsoft
 export OSTYPE=linux
 
 # Pgplot
-PGPLOT_DIR=$ASTROSOFT/pgplot_build
+export PGPLOT_DIR=$ASTROSOFT/pgplot_build
 
 # PSRCAT
 export PSRCAT_RUNDIR=$ASTROSOFT/psrcat_tar
@@ -119,11 +119,11 @@ XWDRIV 2 /XSERVE
 ```bash
 ../pgplot/makemake ../pgplot linux g77_gcc #再执行一次
 ```
-##### 2.修改 pgplot_build/makefile
+##### 2.修改 $ASTROSOFT/pgplot_build/makefile
 第25行改为 FCOMPL=gfortran  
 第880行改为 pndriv.o : /usr/include/png.h /usr/include/pngconf.h /usr/include/zlib.h /usr/include/zconf.h
 
-##### 3.修改 ../pgplot/drivers/pndriv.c
+##### 3.修改 $ASTROSOFT/pgplot/drivers/pndriv.c
 将第225行左右的  
 if (setjmp(png_ptr->jmpbuf)) {  
 改为  
